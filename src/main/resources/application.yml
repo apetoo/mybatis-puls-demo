@@ -1,0 +1,26 @@
+# DataSource Config
+spring:
+  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    schema: classpath:db/schema-h2.sql
+    data: classpath:db/data-h2.sql
+    url: jdbc:p6spy:h2:mem:test
+#    url: jdbc:p6spy:mysql://10.20.29.71:3306/mybatis-puls?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: test
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  typeEnumsPackage: com.warape.mybatispuls.enums
+
+  configuration:
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+
+logging:
+  level:
+    com.warape.mybatispuls.mapper: debug
